@@ -32,7 +32,7 @@ if node["opsworks"]["instance"]["layers"].include?("docker")
       user deploy[:user]
       cwd "#{deploy[:deploy_to]}/current"
       code <<-EOH
-        docker build #{deploy[:deploy_to]}/current -t registry.octoblu.com/node-red:latest
+        docker build -t registry.octoblu.com/node-red:latest #{deploy[:deploy_to]}/current
         docker push registry.octoblu.com/node-red:latest
       EOH
     end
