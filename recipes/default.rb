@@ -29,7 +29,7 @@ if node["opsworks"]["instance"]["layers"].include?("docker")
 
     script "docker build" do
       interpreter "bash"
-      user deploy[:user]
+      user "root"
       cwd "#{deploy[:deploy_to]}/current"
       code <<-EOH
         docker build -t registry.octoblu.com/node-red:latest #{deploy[:deploy_to]}/current
