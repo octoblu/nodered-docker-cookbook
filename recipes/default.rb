@@ -27,11 +27,14 @@ if node["opsworks"]["instance"]["layers"].include?("docker")
       app application
     end
 
-    ruby_block "docker build #{deploy[:deploy_to]}" do
-      block do
-        Chef::Log.info("built docker via: #{deploy[:deploy_to]}")
-        $? == 0
-      end
+    script "docker build" do
+      interpreter "bash"
+      user deploy[:user]
+      cwd "#{deploy[:deploy_to]}/current"
+      code <<-EOH
+        docker build #{deploy[:deploy_to]}/current -t registry.octoblu.com/node-red:latest
+        docker push registry.octoblu.com/node-red:latest
+      EOH
     end
   end
 end
