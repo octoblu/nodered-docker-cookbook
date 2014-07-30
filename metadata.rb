@@ -6,4 +6,3 @@ description      'Installs/Configures nodered-docker'
 long_description 'Installs/Configures nodered-docker'
 version          '0.1.0'
 
-depends 'deploy'
