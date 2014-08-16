@@ -32,8 +32,8 @@ if node["opsworks"]["instance"]["layers"].include?("docker")
       user "root"
       cwd "#{deploy[:deploy_to]}/current"
       code <<-EOH
-        docker build -t deploy[:registry_hostname]/deploy[:registry_image] .
-        docker push deploy[:registry_hostname]/deploy[:registry_image]
+        docker build -t #{deploy[:registry_hostname]}/#{deploy[:registry_image]} .
+        docker push #{deploy[:registry_hostname]}/#{deploy[:registry_image]}
       EOH
     end
   end
